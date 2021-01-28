@@ -98,15 +98,15 @@ $query = "SELECT * FROM comments";
        $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = $the_comment_id ";
        $approve_comment_query = mysqli_query($connection, $query);
        header("location: comments.php");
-    }
+      }
 
-           if (isset($_GET['unapprove'])) {
+         if (isset($_GET['unapprove'])) {
        $the_comment_id = $_GET['unapprove'];
 
        $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = $the_comment_id ";
        $unapprove_comment_query = mysqli_query($connection, $query);
        header("location: comments.php");
-    }
+      }
 
 
 

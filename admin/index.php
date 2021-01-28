@@ -209,7 +209,6 @@ $subscriber_count = mysqli_num_rows($select_all_subscribers);
               echo "['{$element_text[$i]}'" . ", " . "{$element_count[$i]}],";
           }
 
-
            ?>
 
 

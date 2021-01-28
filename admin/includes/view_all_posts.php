@@ -8,8 +8,21 @@ if (isset($_POST['checkBoxArray'])) {
 
            switch ($bulk_options) {
                case 'published':
-                   $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = '$post_value_id' ";
+                   $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$post_value_id} ";
                    $update_to_published_status = mysqli_query($connection, $query);
+                   confirmQuery($update_to_published_status);
+                   break;
+
+               case 'draft':
+                   $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$post_value_id} ";
+                   $update_to_draft_status = mysqli_query($connection, $query);
+                   confirmQuery($update_to_draft_status);
+                   break;
+
+                case 'deleted':
+                   $query = "DELETE FROM posts WHERE post_id = {$post_value_id}  ";
+                   $update_to_delete_status = mysqli_query($connection, $query);
+                   confirmQuery($update_to_delete_status);
                    break;
                
                default:
@@ -27,7 +40,7 @@ if (isset($_POST['checkBoxArray'])) {
 
 <form action="" method="post">
 	<table class="table table-bordered table-hover">
-        <div id="bulkOptionContainer" class="col-xs-4" style="margin-bottom: 5px">
+        <div id="bulkOptionContainer" class="col-xs-4" style="margin-bottom: 5px;">
             
             <select class="form-control" name="bulk_options" id="">
                 <option value="">Select Options</option>
@@ -54,6 +67,7 @@ if (isset($_POST['checkBoxArray'])) {
         				<th>Tags</th>
         				<th>Comments</th>
         				<th>Date</th>
+                        <th>View Post</th>
                         <th>Edit</th>
                         <th>Delete</th>
         			</tr>
@@ -106,6 +120,7 @@ $cat_title = $row['cat_title'];
         	echo "<td>{$post_tags}</td>";
         	echo "<td>{$post_comment_count}</td>";
         	echo "<td>{$post_date}</td>";
+            echo "<td><a href='../post.php?p_id={$post_id}';>View Post</a></td>";
             echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}';>Edit</a></td>";
             echo "<td><a href='posts.php?delete={$post_id}';>Delete</a></td>";
 

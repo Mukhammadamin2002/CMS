@@ -59,9 +59,15 @@ $cat_title = $row['cat_title'];
 		 <input type="text" class="form-control" name="author">
 	</div>
 
+	 <label for="post_status">Post Status</label>
 	<div class="form-group">
-		 <label for="post_status">Post Status</label>
-		 <input  type="text" class="form-control" name="post_status">
+
+		 <select name="post_status" id="">
+		 	<option value="draft">Select Options</option>
+		 	<option value="draft">Draft</option>
+		 	<option value="published">Publish</option>
+		 </select>
+
 	</div>
 
 	<div class="form-group">
